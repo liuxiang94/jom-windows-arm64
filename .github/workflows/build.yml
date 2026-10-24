@@ -46,10 +46,8 @@ jobs:
         run: |
           git clone --branch v${{ env.jom_version }} --depth 1 https://github.com/qt-labs/jom.git 
           cd jom
-          mkdir build
-          cd build
-          cmake -G "Ninja" -DCMAKE_PREFIX_PATH="${{ env.qt_path }}" -DCMAKE_BUILD_TYPE=Release ..
-          cmake --build .
+          cmake -B "build" -G "Ninja" -DCMAKE_PREFIX_PATH="${{ env.qt_path }}" -DCMAKE_BUILD_TYPE=Release -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded$<$<CONFIG:Debug>:Debug>"
+          cmake --build build
 
       - name: Prepare build artifacts
         run: |
