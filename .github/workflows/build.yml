@@ -62,7 +62,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v6
         with:
-          name: jom_${{ env.jom_version }}
+          name: jom_${{ env.jom_version }}_arm64
           path: upload
 
       - name: Batch release
